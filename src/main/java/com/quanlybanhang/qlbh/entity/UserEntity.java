@@ -37,7 +37,4 @@ public class UserEntity {
 	private String user_name;
 
 
-
-	
-	
 }

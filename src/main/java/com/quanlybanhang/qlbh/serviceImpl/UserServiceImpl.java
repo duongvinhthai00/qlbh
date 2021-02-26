@@ -4,6 +4,7 @@ package com.quanlybanhang.qlbh.serviceImpl;
 import com.quanlybanhang.qlbh.dao.UserDao;
 import com.quanlybanhang.qlbh.dto.UserDTO;
 import com.quanlybanhang.qlbh.entity.UserEntity;
+import com.quanlybanhang.qlbh.exception.ExceptionGobal;
 import com.quanlybanhang.qlbh.exception.NotFoundException;
 import com.quanlybanhang.qlbh.modalmapping.UserMapper;
 import com.quanlybanhang.qlbh.service.UserService;
@@ -42,24 +43,51 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void addUser(UserDTO userDTO) {
-		UserEntity userEntity = UserMapper.dto2Entity(userDTO);
-		userDao.save(userEntity);
+	public UserDTO addUser(UserDTO userDTO) {
+		try {
+			UserEntity userEntity = UserMapper.dto2Entity(userDTO);
+			userDao.save(userEntity);
+			return userDTO;
+		}catch (Exception e){
+			throw new ExceptionGobal("User Name Da ton Tai");
+		}
+
 	}
 
 	@Override
 	public void deleteUser(Integer id) {
-		UserEntity userEntity = userDao.findById(id).get();
-		userDao.delete(userEntity);
+		UserEntity userEntity =null;
+		try {
+			 userEntity = userDao.findById(id).get();
+		}catch (Exception e){
+			throw new ExceptionGobal("User Khong Ton Tai");
+		}
+		try {
+			userDao.delete(userEntity);
+		}catch (Exception e){
+			throw new ExceptionGobal("Xoa Khong thanh cong");
+		}
+
 	}
 
 	@Override
 	public void updateUser(UserDTO userDTO) {
-		UserEntity userEntity = userDao.findById(userDTO.getId()).get();
-		if(userEntity != null) {
-			UserEntity userEntity2 = UserMapper.dto2Entity(userDTO);
-			userDao.save(userEntity2);
+		UserEntity userEntity = null;
+		try {
+			 userEntity = userDao.findById(userDTO.getId()).get();
+		}catch (Exception e){
+			throw  new ExceptionGobal("Khong Tim Thay User De Chinh Sua");
 		}
+
+		try {
+			if(userEntity != null) {
+				userEntity = UserMapper.dto2Entity(userDTO);
+				userDao.save(userEntity);
+			}
+		}catch (Exception e){
+			throw new ExceptionGobal("UserName Khong Duoc Trung");
+		}
+
 	}
 	
 	

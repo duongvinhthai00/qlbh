@@ -13,4 +13,10 @@ public class CustomExceptionHandler {
     public ErrorResponse NotFoundExceptionHandler(NotFoundException ex , WebRequest web){
         return new ErrorResponse(HttpStatus.NOT_FOUND,ex.getMessage());
     }
+
+    @ExceptionHandler(ExceptionGobal.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ErrorResponse ExistedExceptionHandler(ExceptionGobal ex , WebRequest web){
+        return new ErrorResponse(HttpStatus.BAD_REQUEST,ex.getMessage());
+    }
 }
