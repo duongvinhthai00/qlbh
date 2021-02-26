@@ -11,4 +11,5 @@ public interface UserService {
 	UserDTO addUser(UserDTO userDTO);
 	void deleteUser(Integer id);
 	void updateUser(UserDTO userDTO);
+	Boolean Login(String userName, String passWord);
 }
