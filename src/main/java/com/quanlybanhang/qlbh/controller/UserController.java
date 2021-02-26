@@ -2,7 +2,6 @@ package com.quanlybanhang.qlbh.controller;
 
 
 import com.quanlybanhang.qlbh.dto.UserDTO;
-import com.quanlybanhang.qlbh.dto.student;
 import com.quanlybanhang.qlbh.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,14 +25,10 @@ public class UserController {
 	
 	@GetMapping("users/{id}")
 	public ResponseEntity<UserDTO> getUserById(@PathVariable int id){
-		
 		UserDTO userDTO = userService.findUserById(id);
 		return ResponseEntity.ok().body(userDTO);
 	}
 
-	@PostMapping("sv")
-	public student kq(@Valid @RequestBody student s){
-		return s;
-	}
+
 	
 }

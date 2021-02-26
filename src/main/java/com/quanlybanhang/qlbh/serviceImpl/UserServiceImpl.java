@@ -4,6 +4,7 @@ package com.quanlybanhang.qlbh.serviceImpl;
 import com.quanlybanhang.qlbh.dao.UserDao;
 import com.quanlybanhang.qlbh.dto.UserDTO;
 import com.quanlybanhang.qlbh.entity.UserEntity;
+import com.quanlybanhang.qlbh.exception.NotFoundException;
 import com.quanlybanhang.qlbh.modalmapping.UserMapper;
 import com.quanlybanhang.qlbh.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +31,14 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserDTO findUserById(Integer id) {
-		UserEntity userEntity = userDao.findById(id).get();
-		UserDTO userDTO = UserMapper.entity2DTO(userEntity);
-		return userDTO;
+		try {
+			UserEntity userEntity = userDao.findById(id).get();
+			UserDTO userDTO = UserMapper.entity2DTO(userEntity);
+			return userDTO;
+		}catch (Exception e){
+			throw new NotFoundException("Khong Tim Thay User");
+		}
+
 	}
 
 	@Override
