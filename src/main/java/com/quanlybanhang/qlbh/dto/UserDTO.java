@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotBlank;
 import java.sql.Timestamp;
@@ -17,7 +18,7 @@ public class UserDTO {
 	private String phone;
 	private String avatar;
 	private String active;
-	@NotBlank(message = "password Khong duoc de trong")
+	@NotBlank(message = "password Không Được Để Trống")
 	private String password;
 	private String name;
 	private String email;
@@ -26,8 +27,9 @@ public class UserDTO {
 	private String about;
 	private Timestamp created_at;
 	private Timestamp update_at;
-	@NotBlank(message = "user_name Khong duoc de trong")
+	@NotBlank(message = "user_name Không Được Để Trống")
 	private String user_name;
+	private MultipartFile fileupload;
 
 
 	

@@ -8,5 +8,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserDao extends JpaRepository<UserEntity, Integer> {
-
+    @Query("SELECT u from UserEntity u where u.user_name = ?1 and u.password = ?2")
+    UserEntity CheckUserLogin(String userName,String password);
 }
