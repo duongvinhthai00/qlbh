@@ -2,6 +2,7 @@ package com.quanlybanhang.qlbh.serviceImpl;
 
 
 import com.quanlybanhang.qlbh.dao.UserDao;
+import com.quanlybanhang.qlbh.dto.LoginDTO;
 import com.quanlybanhang.qlbh.dto.UserDTO;
 import com.quanlybanhang.qlbh.entity.UserEntity;
 import com.quanlybanhang.qlbh.exception.ExceptionGobal;
@@ -16,7 +17,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.validation.Valid;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -51,6 +54,7 @@ public class UserServiceImpl implements UserService {
 	public UserDTO addUser(UserDTO userDTO) {
 		try {
 			UserEntity userEntity = UserMapper.dto2Entity(userDTO);
+			userEntity.setCreated_at(TimeService.getTimeNow());
 			UserEntity userEntity1 = userDao.save(userEntity);
 			userDTO = UserMapper.entity2DTO(userEntity1);
 			return userDTO;
@@ -97,12 +101,12 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserDTO CheckUserLogin(UserDTO userDTO) {
-		UserEntity userEntity = userDao.CheckUserLogin(userDTO.getUser_name(),userDTO.getPassword());
+	public UserDTO CheckUserLogin(LoginDTO loginDTO) {
+		UserEntity userEntity = userDao.CheckUserLogin(loginDTO.getUser_name(),loginDTO.getPassword());
 		if(userEntity == null){
 			throw new ExceptionGobal("Tài Khoảng Hoặc Mật Khâu Không Chính Xác");
 		}
-		userDTO  = UserMapper.entity2DTO(userEntity);
+		UserDTO userDTO  = UserMapper.entity2DTO(userEntity);
 		return userDTO;
 	}
 

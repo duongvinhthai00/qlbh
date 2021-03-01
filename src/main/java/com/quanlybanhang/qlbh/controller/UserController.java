@@ -1,6 +1,7 @@
 package com.quanlybanhang.qlbh.controller;
 
 
+import com.quanlybanhang.qlbh.dto.LoginDTO;
 import com.quanlybanhang.qlbh.dto.UserDTO;
 import com.quanlybanhang.qlbh.service.UserService;
 import com.quanlybanhang.qlbh.serviceImpl.MapValidationService;
@@ -67,11 +68,11 @@ public class UserController {
 	}
 
 	@PostMapping("users/login")
-	public ResponseEntity<?> UserCheckLogin(@Valid @RequestBody UserDTO userDTO,BindingResult result){
+	public ResponseEntity<?> UserCheckLogin(@Valid @RequestBody LoginDTO loginDTO, BindingResult result){
 		if(result.hasErrors()){
 			return mapValidationService.getMapValidationError(result);
 		}
-		return new ResponseEntity<UserDTO>(userService.CheckUserLogin(userDTO),HttpStatus.OK);
+		return new ResponseEntity<UserDTO>(userService.CheckUserLogin(loginDTO),HttpStatus.OK);
 	}
 
 	@PostMapping("users/upload/{id}")

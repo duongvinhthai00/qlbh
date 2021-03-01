@@ -1,6 +1,7 @@
 package com.quanlybanhang.qlbh.service;
 
 
+import com.quanlybanhang.qlbh.dto.LoginDTO;
 import com.quanlybanhang.qlbh.dto.UserDTO;
 
 import java.util.List;
@@ -11,5 +12,5 @@ public interface UserService {
 	UserDTO addUser(UserDTO userDTO);
 	void deleteUser(Integer id);
 	void updateUser(UserDTO userDTO);
-	UserDTO CheckUserLogin(UserDTO userDTO);
+	UserDTO CheckUserLogin(LoginDTO loginDTO);
 }
