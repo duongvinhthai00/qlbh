@@ -14,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/v3")
+@CrossOrigin(origins = "http://localhost:4200")
 public class CategoryGroupController {
 
     @Autowired
