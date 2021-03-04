@@ -27,4 +27,13 @@ public class ProductServiceImpl implements ProductService {
         }
         return productDTOList;
     }
+
+    @Override
+    public ProductDTO getProductById(Integer id) {
+        ProductEntity productEntity = productDao.findById(id).get();
+        ProductDTO productDTO = ProductMapper.entity2DTO(productEntity);
+        return productDTO;
+    }
+
+
 }

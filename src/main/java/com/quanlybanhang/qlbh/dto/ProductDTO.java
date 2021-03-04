@@ -1,11 +1,13 @@
 package com.quanlybanhang.qlbh.dto;
 
+import com.quanlybanhang.qlbh.entity.ImageEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Getter
 @Setter
@@ -31,4 +33,5 @@ public class ProductDTO {
     private CategoryDTO pro_category_id;
     private AdminDTO pro_author_id;
     private SupplierDTO s_suppliers_id;
+
 }
