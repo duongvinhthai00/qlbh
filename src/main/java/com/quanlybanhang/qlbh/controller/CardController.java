@@ -27,8 +27,9 @@ public class CardController {
         if(result.hasErrors()){
             return mapValidationService.getMapValidationError(result);
         }
-        CardDTO dto = cardService.addOrUpdateCard(cardDTO);
-        return new ResponseEntity<CardDTO>(dto, HttpStatus.CREATED);
+        cardService.addOrUpdateCard(cardDTO);
+        return new ResponseEntity<Boolean>(true, HttpStatus.CREATED);
+
     }
 
     @GetMapping("cards/{userId}")
@@ -46,5 +47,15 @@ public class CardController {
     @DeleteMapping("cards/{id}")
     public void deleteCard(@PathVariable Integer id){
         cardService.deleteCardDTO(id);
+    }
+
+    @DeleteMapping("cards-all/{userId}")
+    public void deleteAllCard(@PathVariable Integer userId){
+        cardService.deleteAllCard(userId);
+    }
+
+    @PostMapping("check-card-transaction/{userId}")
+    public Boolean checkCardToTransaction(@RequestBody List<CardDTO> listCardDTO,@PathVariable Integer userId){
+         return cardService.checkCardToTransaction(listCardDTO,userId);
     }
 }
