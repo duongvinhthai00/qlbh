@@ -1,8 +1,10 @@
 package com.quanlybanhang.qlbh.serviceImpl;
 
 import com.quanlybanhang.qlbh.dao.CardDao;
+import com.quanlybanhang.qlbh.dao.ProductDao;
 import com.quanlybanhang.qlbh.dto.CardDTO;
 import com.quanlybanhang.qlbh.entity.CardEntity;
+import com.quanlybanhang.qlbh.entity.ProductEntity;
 import com.quanlybanhang.qlbh.exception.ExceptionGobal;
 import com.quanlybanhang.qlbh.modalmapping.CardMapper;
 import com.quanlybanhang.qlbh.service.CardService;
@@ -16,6 +18,9 @@ import java.util.List;
 public class CardServiceImpl implements CardService {
     @Autowired
     private CardDao cardDao;
+
+    @Autowired
+    private ProductDao productDao;
 
     @Override
     public Boolean addOrUpdateCard(CardDTO cardDTO) {
@@ -36,9 +41,14 @@ public class CardServiceImpl implements CardService {
             cardEntity1.setC_qty(cardEntity1.getC_qty() + cardDTO.getC_qty());
             cardDao.save(cardEntity1);
             return true;
+        }else{
+            ProductEntity productEntity = productDao.findById(cardDTO.getC_product_id().getId()).get();
+            if(cardDTO.getC_qty() > productEntity.getPro_number()){
+                throw  new ExceptionGobal("Vượt Quá Số Lượng Hàng !!!");
+            }
+            cardEntity1 = CardMapper.dto2Entity(cardDTO);
+            cardDao.save(cardEntity1);
         }
-        cardEntity1 = CardMapper.dto2Entity(cardDTO);
-        cardDao.save(cardEntity1);
         return  true;
     }
 

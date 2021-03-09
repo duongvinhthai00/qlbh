@@ -45,7 +45,6 @@ public class UserController {
 
 	@PostMapping("users")
 	public ResponseEntity<?> addUser(@Valid @RequestBody UserDTO userDTO, BindingResult result){
-		System.out.println("Vo");
 		if(result.hasErrors()){
 			return mapValidationService.getMapValidationError(result);
 		}

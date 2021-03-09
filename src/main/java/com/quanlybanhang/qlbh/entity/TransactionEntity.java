@@ -27,7 +27,7 @@ public class TransactionEntity {
     private Integer tr_status;
     private Timestamp created_at;
     private Timestamp updated_at;
-
+    private String name;
     @ManyToOne
     @JoinColumn(name = "tr_user_id")
     private UserEntity tr_user_id;
