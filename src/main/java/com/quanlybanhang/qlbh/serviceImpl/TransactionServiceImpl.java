@@ -38,4 +38,11 @@ public class TransactionServiceImpl implements TransactionService {
         }
         return transactionDTOList;
     }
+
+    @Override
+    public TransactionDTO getTransactionById(Integer tr_id) {
+        TransactionEntity entity = transactionDao.findById(tr_id).get();
+        TransactionDTO transactionDTO = TransactionMapper.entity2DTO(entity);
+        return transactionDTO;
+    }
 }

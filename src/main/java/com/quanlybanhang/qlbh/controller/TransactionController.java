@@ -67,10 +67,6 @@ public class TransactionController {
                 }
             }
         }
-
-
-
-
         cardService.deleteAllCard(transactionDTO.getTr_user_id().getId());
         return new ResponseEntity<TransactionDTO>(transactionDTO, HttpStatus.CREATED);
     }
@@ -89,6 +85,17 @@ public class TransactionController {
         return true;
     }
 
+    @GetMapping("transaction-id/{tr_id}")
+    public ResponseEntity<?> getTransactionByID(@PathVariable Integer tr_id){
+        TransactionDTO transactionDTO = transactionService.getTransactionById(tr_id);
+        return new ResponseEntity<TransactionDTO>(transactionDTO,HttpStatus.OK);
+    }
+
+    @GetMapping("order-transaction/{tr_id}")
+    public ResponseEntity<?> getOrderByTransactionId(@PathVariable Integer tr_id){
+        List<OrderDTO> orderDTOList = orderService.getOrderByTransactionID(tr_id);
+        return new ResponseEntity<List<OrderDTO>>(orderDTOList,HttpStatus.OK);
+    }
 
     public OrderDTO GetOrder(CardDTO cardDTO,TransactionDTO transactionDTO){
         OrderDTO orderDTO = new OrderDTO();
