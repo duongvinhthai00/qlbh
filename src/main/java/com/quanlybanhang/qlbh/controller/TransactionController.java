@@ -68,6 +68,13 @@ public class TransactionController {
     }
 
 
+    @GetMapping("transaction/{userId}")
+    public ResponseEntity<?> GetTransactionByUser(@PathVariable Integer userId){
+        List<TransactionDTO> list = transactionService.GetTransactionByUser(userId);
+        return new ResponseEntity<List<TransactionDTO>>(list,HttpStatus.OK);
+    }
+
+
     public OrderDTO GetOrder(CardDTO cardDTO,TransactionDTO transactionDTO){
         OrderDTO orderDTO = new OrderDTO();
         orderDTO.setCreated_at(TimeService.getTimeNow());

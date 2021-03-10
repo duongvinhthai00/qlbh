@@ -9,6 +9,9 @@ import com.quanlybanhang.qlbh.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class TransactionServiceImpl implements TransactionService {
     @Autowired
@@ -24,5 +27,15 @@ public class TransactionServiceImpl implements TransactionService {
             throw new ExceptionGobal("Thêm Transaction Thất Bại");
         }
         return transactionDTO;
+    }
+
+    @Override
+    public List<TransactionDTO> GetTransactionByUser(Integer userId) {
+        List<TransactionEntity> transactionEntities = transactionDao.GetTransactionByUser(userId);
+        List<TransactionDTO> transactionDTOList = new ArrayList<>();
+        for(TransactionEntity entity : transactionEntities){
+            transactionDTOList.add(TransactionMapper.entity2DTO(entity));
+        }
+        return transactionDTOList;
     }
 }
