@@ -1,7 +1,9 @@
 package com.quanlybanhang.qlbh.controller;
 
 
+import com.quanlybanhang.qlbh.dao.OrderDao;
 import com.quanlybanhang.qlbh.dao.ProductDao;
+import com.quanlybanhang.qlbh.dao.TransactionDao;
 import com.quanlybanhang.qlbh.dto.CardDTO;
 import com.quanlybanhang.qlbh.dto.OrderDTO;
 import com.quanlybanhang.qlbh.dto.TransactionDTO;
@@ -39,6 +41,12 @@ public class TransactionController {
     @Autowired
     private ProductDao productDao;
 
+    @Autowired
+    private OrderDao orderDao;
+
+    @Autowired
+    private TransactionDao transactionDao;
+
     @PostMapping("transaction")
     public ResponseEntity<?> addTransaction(@Valid @RequestBody TransactionDTO transactionDTO, BindingResult result){
         transactionDTO.setTr_status(0);
@@ -72,6 +80,13 @@ public class TransactionController {
     public ResponseEntity<?> GetTransactionByUser(@PathVariable Integer userId){
         List<TransactionDTO> list = transactionService.GetTransactionByUser(userId);
         return new ResponseEntity<List<TransactionDTO>>(list,HttpStatus.OK);
+    }
+
+    @DeleteMapping("transaction/{tr_id}")
+    public Boolean deleteAllByTransaction(@PathVariable Integer tr_id){
+        orderDao.deleteAllByTransaction(tr_id);
+        transactionDao.deleteById(tr_id);
+        return true;
     }
 
 
