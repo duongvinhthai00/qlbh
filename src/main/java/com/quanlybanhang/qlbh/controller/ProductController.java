@@ -28,6 +28,12 @@ public class ProductController {
         ProductDTO productDTO = this.productService.getProductById(id);
         return new ResponseEntity<ProductDTO>(productDTO,HttpStatus.OK);
     }
+
+    @GetMapping("products")
+    public  ResponseEntity<?> getProductAll(){
+        List<ProductDTO> productDTOList = productService.getProductAll();
+        return new ResponseEntity<List<ProductDTO>>(productDTOList,HttpStatus.OK);
+    }
     
 
 }
