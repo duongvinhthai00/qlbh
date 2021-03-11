@@ -97,6 +97,18 @@ public class TransactionController {
         return new ResponseEntity<List<OrderDTO>>(orderDTOList,HttpStatus.OK);
     }
 
+    @PutMapping("order-transaction")
+    public Boolean updateProductNumber(@RequestBody Integer tr_id ){
+        List<OrderDTO> orderDTOS = orderService.getOrderByTransactionID(tr_id);
+        for(OrderDTO orderDTO : orderDTOS){
+            ProductEntity productEntity = productDao.findById(orderDTO.getOr_product_id().getId()).get();
+            productEntity.setPro_number(productEntity.getPro_number() + orderDTO.getOr_qty());
+            productDao.save(productEntity);
+        }
+        return true;
+    }
+
+
     public OrderDTO GetOrder(CardDTO cardDTO,TransactionDTO transactionDTO){
         OrderDTO orderDTO = new OrderDTO();
         orderDTO.setCreated_at(TimeService.getTimeNow());

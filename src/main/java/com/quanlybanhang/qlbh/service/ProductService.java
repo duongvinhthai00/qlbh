@@ -7,4 +7,5 @@ import java.util.List;
 public interface ProductService {
     List<ProductDTO> GetProductByCategoryId(Integer CategoryId);
     ProductDTO getProductById(Integer id);
+    List<ProductDTO> getProductAll();
 }

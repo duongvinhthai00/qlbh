@@ -35,5 +35,16 @@ public class ProductServiceImpl implements ProductService {
         return productDTO;
     }
 
+    @Override
+    public List<ProductDTO> getProductAll() {
+        List<ProductEntity> entityList = productDao.findAll();
+        List<ProductDTO> productDTOList = new ArrayList<>();
+        for(ProductEntity entity : entityList){
+            ProductDTO productDTO = ProductMapper.entity2DTO(entity);
+            productDTOList.add(productDTO);
+        }
+        return productDTOList;
+    }
+
 
 }

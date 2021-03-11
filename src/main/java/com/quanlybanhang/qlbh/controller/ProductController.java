@@ -28,5 +28,6 @@ public class ProductController {
         ProductDTO productDTO = this.productService.getProductById(id);
         return new ResponseEntity<ProductDTO>(productDTO,HttpStatus.OK);
     }
+    
 
 }
