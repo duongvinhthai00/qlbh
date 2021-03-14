@@ -2,6 +2,7 @@ package com.quanlybanhang.qlbh.serviceImpl;
 
 import com.quanlybanhang.qlbh.dao.AdminDao;
 import com.quanlybanhang.qlbh.dto.AdminDTO;
+import com.quanlybanhang.qlbh.dto.LoginDTO;
 import com.quanlybanhang.qlbh.entity.AdminEntity;
 import com.quanlybanhang.qlbh.exception.ExceptionGobal;
 import com.quanlybanhang.qlbh.exception.NotFoundException;
@@ -90,11 +91,12 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public Boolean CheckAdminLogin(AdminDTO adminDTO) {
-        AdminEntity adminEntity = adminDao.CheckAdminLogin(adminDTO.getUser_name(),adminDTO.getPassword());
+    public AdminDTO CheckAdminLogin(LoginDTO loginDTO) {
+        AdminEntity adminEntity = adminDao.CheckAdminLogin(loginDTO.getUser_name(),loginDTO.getPassword());
         if(adminEntity == null){
             throw new ExceptionGobal("Tài Khoảng Hoặc Mật Khẩu Không Chính Xác");
         }
-        return true;
+        AdminDTO adminDTO = AdminMapper.entity2DTO(adminEntity);
+        return adminDTO;
     }
 }

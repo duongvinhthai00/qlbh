@@ -34,6 +34,12 @@ public class ProductController {
         List<ProductDTO> productDTOList = productService.getProductAll();
         return new ResponseEntity<List<ProductDTO>>(productDTOList,HttpStatus.OK);
     }
+
+    @PostMapping("search-products")
+    public ResponseEntity<?> SearchProducts(@RequestBody String searchInput){
+        List<ProductDTO> productDTOList = productService.SearchProducts(searchInput);
+        return new ResponseEntity<List<ProductDTO>>(productDTOList,HttpStatus.OK);
+    }
     
 
 }

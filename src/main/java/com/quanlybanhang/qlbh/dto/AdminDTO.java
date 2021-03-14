@@ -19,10 +19,8 @@ public class AdminDTO {
     private String phone ;
     private String avatar ;
     private Integer active;
-    @NotBlank(message = "password Không Được Để Trống")
     private String password ;
     private Timestamp created_at ;
     private Timestamp update_at ;
-    @NotBlank(message = "UserName Không Được Để Trống")
     private String user_name ;
 }

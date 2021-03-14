@@ -35,7 +35,7 @@ public class ProductEntity {
     private Timestamp created_at ;
     private Timestamp updated_at ;
     private Integer pro_view;
-
+    private String pro_place_sale;
 
     @ManyToOne
     @JoinColumn(name = "pro_category_id")

@@ -1,6 +1,7 @@
 package com.quanlybanhang.qlbh.controller;
 
 import com.quanlybanhang.qlbh.dto.AdminDTO;
+import com.quanlybanhang.qlbh.dto.LoginDTO;
 import com.quanlybanhang.qlbh.service.AdminService;
 import com.quanlybanhang.qlbh.serviceImpl.MapValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/v2")
+@CrossOrigin(origins = "http://localhost:4200")
 public class AdminController {
     @Autowired
     private AdminService adminService;
@@ -58,10 +60,10 @@ public class AdminController {
     }
 
     @PostMapping("admins/login")
-    public ResponseEntity<?> AdminCheckLogin(@Valid @RequestBody AdminDTO adminDTO,BindingResult result){
+    public ResponseEntity<?> AdminCheckLogin(@Valid @RequestBody LoginDTO loginDTO, BindingResult result){
         if(result.hasErrors()){
             return mapValidationService.getMapValidationError(result);
         }
-        return new ResponseEntity<Boolean>(adminService.CheckAdminLogin(adminDTO),HttpStatus.OK);
+        return new ResponseEntity<AdminDTO>(adminService.CheckAdminLogin(loginDTO),HttpStatus.OK);
     }
 }

@@ -46,5 +46,16 @@ public class ProductServiceImpl implements ProductService {
         return productDTOList;
     }
 
+    @Override
+    public List<ProductDTO> SearchProducts(String searchInput) {
+        List<ProductEntity> entityList = productDao.SearchProducts(searchInput);
+        List<ProductDTO> productDTOList = new ArrayList<>();
+        for(ProductEntity entity : entityList){
+            ProductDTO productDTO = ProductMapper.entity2DTO(entity);
+            productDTOList.add(productDTO);
+        }
+        return productDTOList;
+    }
+
 
 }
