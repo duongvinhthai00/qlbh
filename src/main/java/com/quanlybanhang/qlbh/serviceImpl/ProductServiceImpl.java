@@ -3,6 +3,7 @@ package com.quanlybanhang.qlbh.serviceImpl;
 import com.quanlybanhang.qlbh.dao.ProductDao;
 import com.quanlybanhang.qlbh.dto.ProductDTO;
 import com.quanlybanhang.qlbh.entity.ProductEntity;
+import com.quanlybanhang.qlbh.exception.ExceptionGobal;
 import com.quanlybanhang.qlbh.modalmapping.ProductMapper;
 import com.quanlybanhang.qlbh.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +56,16 @@ public class ProductServiceImpl implements ProductService {
             productDTOList.add(productDTO);
         }
         return productDTOList;
+    }
+
+    @Override
+    public Boolean DeleteProduct(Integer id) {
+        try {
+            productDao.deleteById(id);
+        }catch (Exception e){
+            throw new ExceptionGobal("Xóa Thất Bại");
+        }
+        return true;
     }
 
 

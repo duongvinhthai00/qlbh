@@ -1,8 +1,13 @@
 package com.quanlybanhang.qlbh.controller;
 
 
+import com.quanlybanhang.qlbh.dao.CardDao;
+import com.quanlybanhang.qlbh.dao.OrderDao;
+import com.quanlybanhang.qlbh.dao.TransactionDao;
 import com.quanlybanhang.qlbh.dto.ProductDTO;
+import com.quanlybanhang.qlbh.service.OrderService;
 import com.quanlybanhang.qlbh.service.ProductService;
+import com.quanlybanhang.qlbh.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,6 +44,11 @@ public class ProductController {
     public ResponseEntity<?> SearchProducts(@RequestBody String searchInput){
         List<ProductDTO> productDTOList = productService.SearchProducts(searchInput);
         return new ResponseEntity<List<ProductDTO>>(productDTOList,HttpStatus.OK);
+    }
+
+    @DeleteMapping("products/{id}")
+    public Boolean DeleteProduct(@PathVariable Integer id){
+        return productService.DeleteProduct(id);
     }
     
 
