@@ -101,5 +101,25 @@ public class ProductServiceImpl implements ProductService {
         }
     }
 
+    @Override
+    public ProductDTO updateProduct2(ProductDTO productDTO) {
+        ProductEntity productEntity = null;
+        try {
+            productEntity = productDao.findById(productDTO.getId()).get();
+        }catch (Exception e){
+            throw  new ExceptionGobal("Không Tìm Thấy Product Để Chỉnh Sửa");
+        }
+
+        try {
+            if(productEntity != null) {
+                productEntity = ProductMapper.dto2Entity(productDTO);
+                productDTO = ProductMapper.entity2DTO(productDao.save(productEntity));
+            }
+        }catch (Exception e){
+            throw new ExceptionGobal("Cập Nhật Thất Bại");
+        }
+        return productDTO;
+    }
+
 
 }

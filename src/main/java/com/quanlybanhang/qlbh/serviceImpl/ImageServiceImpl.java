@@ -38,4 +38,9 @@ public class ImageServiceImpl implements ImageService {
         imageDao.save(imageEntity);
     }
 
+    @Override
+    public void DeleteImageProduct(Integer pro_id) {
+        this.imageDao.DeleteImageProduct(pro_id);
+    }
+
 }

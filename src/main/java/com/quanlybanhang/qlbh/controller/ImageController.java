@@ -42,4 +42,11 @@ public class ImageController {
         imageService.addImagesForProduct(fileName,productDTO);
         return true;
     }
+
+    @DeleteMapping("delete-product-image/{pro_id}")
+    public Boolean DeleteImageProduct(@PathVariable Integer pro_id){
+        this.imageService.DeleteImageProduct(pro_id);
+        return true;
+    }
+
 }
