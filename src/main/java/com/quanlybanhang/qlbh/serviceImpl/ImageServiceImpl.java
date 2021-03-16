@@ -2,6 +2,7 @@ package com.quanlybanhang.qlbh.serviceImpl;
 
 import com.quanlybanhang.qlbh.dao.ImageDao;
 import com.quanlybanhang.qlbh.dto.ImageDTO;
+import com.quanlybanhang.qlbh.dto.ProductDTO;
 import com.quanlybanhang.qlbh.entity.ImageEntity;
 import com.quanlybanhang.qlbh.modalmapping.ImageMapper;
 import com.quanlybanhang.qlbh.service.ImageService;
@@ -26,4 +27,15 @@ public class ImageServiceImpl implements ImageService {
         }
         return dtos;
     }
+
+    @Override
+    public void addImagesForProduct(String FileName, ProductDTO productDTO) {
+        ImageDTO imageDTO = new ImageDTO();
+        imageDTO.setIm_name(FileName);
+        imageDTO.setIm_product_id(productDTO);
+        imageDTO.setCreated_at(TimeService.getTimeNow());
+        ImageEntity imageEntity = ImageMapper.dto2Entity(imageDTO);
+        imageDao.save(imageEntity);
+    }
+
 }

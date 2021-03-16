@@ -76,7 +76,6 @@ public class UserController {
 
 	@PostMapping("users/upload/{id}")
 	public Boolean userUploadFile(@PathVariable Integer id,@RequestParam("file") MultipartFile file){
-		System.out.println(id);
 		UserDTO userDTO = userService.findUserById(id);
 		String fileName = UploadFileService.UploadOneFile(file,fileUpload);
 		userDTO.setAvatar(fileName);

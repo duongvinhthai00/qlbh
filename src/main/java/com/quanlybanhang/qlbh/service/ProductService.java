@@ -9,6 +9,7 @@ public interface ProductService {
     ProductDTO getProductById(Integer id);
     List<ProductDTO> getProductAll();
     List<ProductDTO> SearchProducts(String searchInput);
-
     Boolean DeleteProduct(Integer id);
+    ProductDTO addProduct(ProductDTO productDTO);
+    void updateProduct(ProductDTO productDTO);
 }

@@ -3,8 +3,10 @@ package com.quanlybanhang.qlbh.serviceImpl;
 import com.quanlybanhang.qlbh.dao.ProductDao;
 import com.quanlybanhang.qlbh.dto.ProductDTO;
 import com.quanlybanhang.qlbh.entity.ProductEntity;
+import com.quanlybanhang.qlbh.entity.UserEntity;
 import com.quanlybanhang.qlbh.exception.ExceptionGobal;
 import com.quanlybanhang.qlbh.modalmapping.ProductMapper;
+import com.quanlybanhang.qlbh.modalmapping.UserMapper;
 import com.quanlybanhang.qlbh.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductDao productDao;
+
+
+
 
     @Override
     public List<ProductDTO> GetProductByCategoryId(Integer CategoryId) {
@@ -66,6 +71,34 @@ public class ProductServiceImpl implements ProductService {
             throw new ExceptionGobal("Xóa Thất Bại");
         }
         return true;
+    }
+
+    @Override
+    public ProductDTO addProduct(ProductDTO productDTO) {
+        ProductEntity productEntity = ProductMapper.dto2Entity(productDTO);
+        productEntity.setCreated_at(TimeService.getTimeNow());
+        productEntity = productDao.save(productEntity);
+        productDTO = ProductMapper.entity2DTO(productEntity);
+        return productDTO;
+    }
+
+    @Override
+    public void updateProduct(ProductDTO productDTO) {
+        ProductEntity productEntity = null;
+        try {
+            productEntity = productDao.findById(productDTO.getId()).get();
+        }catch (Exception e){
+            throw  new ExceptionGobal("Không Tìm Thấy Product Để Chỉnh Sửa");
+        }
+
+        try {
+            if(productEntity != null) {
+                productEntity = ProductMapper.dto2Entity(productDTO);
+                productDao.save(productEntity);
+            }
+        }catch (Exception e){
+            throw new ExceptionGobal("Cập Nhật Thất Bại");
+        }
     }
 
 
