@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -20,13 +21,13 @@ public class ProductDTO {
     @NotBlank(message = "Tên Sản Phẩm Không Được Để Trống")
     private String pr_name ;
     private String pro_slug;
-    @NotBlank(message = "Giá Sản Phẩm Không Được Để Trống")
+    @NotNull(message = "Giá Sản Phẩm Không Được Bỏ Trống")
     private Integer pro_price;
     private Integer pro_sale ;
     private Integer pro_active;
     private Integer pro_hot ;
     private Integer pro_pay ;
-    @NotBlank(message = "Số Lượng Sản Phẩm Không Được Để Trống")
+    @NotNull(message = "Số Lượng Không Được Bỏ Trống")
     private Integer pro_number ;
     private String pro_description ;
     private String pro_avatar ;

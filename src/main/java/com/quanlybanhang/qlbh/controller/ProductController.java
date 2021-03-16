@@ -66,10 +66,12 @@ public class ProductController {
 
     @PostMapping("add-product")
     public ResponseEntity<?> addProduct(@Valid @RequestBody ProductDTO productDTO, BindingResult result){
+
+        System.out.println("work");
         if(result.hasErrors()){
             return mapValidationService.getMapValidationError(result);
         }
-        productDTO.setPro_pay(productDTO.getPro_price() - (productDTO.getPro_price()*(productDTO.getPro_sale()/100)));
+        productDTO.setPro_pay(productDTO.getPro_price() - (productDTO.getPro_price()*productDTO.getPro_sale()/100));
         productDTO = productService.addProduct(productDTO);
         return new ResponseEntity<ProductDTO>(productDTO, HttpStatus.CREATED);
     }
