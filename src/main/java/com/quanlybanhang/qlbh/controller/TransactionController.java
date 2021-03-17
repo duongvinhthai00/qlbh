@@ -108,6 +108,20 @@ public class TransactionController {
         return true;
     }
 
+    @GetMapping("transaction-all")
+    public ResponseEntity<?> GetAllTransaction(){
+        return new ResponseEntity<List<TransactionDTO>>(transactionService.getAllTransaction(),HttpStatus.OK);
+    }
+
+
+    @PutMapping("transaction-update")
+    public ResponseEntity<?> updateTransaction(@Valid @RequestBody TransactionDTO transactionDTO, BindingResult result){
+        if(result.hasErrors()) {
+            return mapValidationService.getMapValidationError(result);
+        }
+        transactionDTO = transactionService.updateTransaction(transactionDTO);
+        return new ResponseEntity<>(transactionDTO,HttpStatus.OK);
+    }
 
     public OrderDTO GetOrder(CardDTO cardDTO,TransactionDTO transactionDTO){
         OrderDTO orderDTO = new OrderDTO();

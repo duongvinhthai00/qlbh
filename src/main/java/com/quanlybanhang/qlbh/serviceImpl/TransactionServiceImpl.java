@@ -45,4 +45,21 @@ public class TransactionServiceImpl implements TransactionService {
         TransactionDTO transactionDTO = TransactionMapper.entity2DTO(entity);
         return transactionDTO;
     }
+
+    @Override
+    public List<TransactionDTO> getAllTransaction() {
+        List<TransactionEntity> entityList = transactionDao.findAll();
+        List<TransactionDTO> transactionDTOS = new ArrayList<>();
+        for(TransactionEntity transactionEntity : entityList){
+            TransactionDTO transactionDTO = TransactionMapper.entity2DTO(transactionEntity);
+            transactionDTOS.add(transactionDTO);
+        }
+        return transactionDTOS;
+    }
+
+    @Override
+    public TransactionDTO updateTransaction(TransactionDTO transactionDTO) {
+        TransactionEntity transactionEntity = TransactionMapper.dto2Entity(transactionDTO);
+        return TransactionMapper.entity2DTO(transactionDao.save(transactionEntity));
+    }
 }
