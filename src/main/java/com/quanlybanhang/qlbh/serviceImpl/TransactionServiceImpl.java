@@ -59,6 +59,7 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public TransactionDTO updateTransaction(TransactionDTO transactionDTO) {
+        transactionDTO.setUpdated_at(TimeService.getTimeNow());
         TransactionEntity transactionEntity = TransactionMapper.dto2Entity(transactionDTO);
         return TransactionMapper.entity2DTO(transactionDao.save(transactionEntity));
     }
