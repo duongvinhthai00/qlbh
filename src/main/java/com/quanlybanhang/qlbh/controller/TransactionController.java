@@ -6,6 +6,8 @@ import com.quanlybanhang.qlbh.dao.ProductDao;
 import com.quanlybanhang.qlbh.dao.TransactionDao;
 import com.quanlybanhang.qlbh.dto.CardDTO;
 import com.quanlybanhang.qlbh.dto.OrderDTO;
+import com.quanlybanhang.qlbh.dao.RevenueDao;
+import com.quanlybanhang.qlbh.dto.RevenueDTO;
 import com.quanlybanhang.qlbh.dto.TransactionDTO;
 import com.quanlybanhang.qlbh.entity.ProductEntity;
 import com.quanlybanhang.qlbh.service.CardService;
@@ -134,5 +136,12 @@ public class TransactionController {
         orderDTO.setOr_transaction_id(transactionDTO);
         orderDTO.setOr_qty(cardDTO.getC_qty());
         return orderDTO;
+    }
+
+    @GetMapping("get-revenue/{fromDay}/{toDay}")
+    public ResponseEntity<?> GetRevenue(@PathVariable String fromDay,@PathVariable String toDay){
+        RevenueDao revenueDao = this.transactionDao.GetRevenueDao(fromDay,toDay);
+        RevenueDTO revenueDTO = new RevenueDTO(revenueDao.getTh1(),revenueDao.getTh2(),revenueDao.getTh3(),revenueDao.getTh4(),revenueDao.getTh5(),revenueDao.getTh6(),revenueDao.getTh7(),revenueDao.getTh8(),revenueDao.getTh9(),revenueDao.getTh10(),revenueDao.getTh11(),revenueDao.getTh12(),revenueDao.getTotal());
+        return new ResponseEntity<>(revenueDTO,HttpStatus.OK);
     }
 }

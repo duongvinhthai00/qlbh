@@ -28,9 +28,15 @@ public class TransactionEntity {
     private Timestamp created_at;
     private Timestamp updated_at;
     private String name;
+    private Integer payment;
+    private Integer payment_status;
     @ManyToOne
     @JoinColumn(name = "tr_user_id")
     private UserEntity tr_user_id;
+
+    @ManyToOne
+    @JoinColumn(name = "tr_transport_id")
+    private TransportEntity tr_transport_id;
 
     @OneToMany(mappedBy = "or_transaction_id",fetch = FetchType.LAZY)
     private List<OrderEntity> listOrders;
