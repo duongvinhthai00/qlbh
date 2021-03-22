@@ -41,4 +41,7 @@ public class UserEntity {
 
 	@OneToMany(mappedBy = "c_user_id",fetch = FetchType.LAZY)
 	private List<CardEntity> listCards;
+
+	@OneToMany(mappedBy = "user_id",fetch = FetchType.LAZY)
+	private List<ViewEntity> viewEntityList;
 }

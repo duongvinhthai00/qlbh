@@ -57,4 +57,7 @@ public class ProductEntity {
 
     @OneToMany(mappedBy = "c_product_id",fetch = FetchType.LAZY)
     private List<CardEntity> listCards;
+
+    @OneToMany(mappedBy = "pro_id",fetch = FetchType.LAZY)
+    private List<ViewEntity> viewEntityList;
 }

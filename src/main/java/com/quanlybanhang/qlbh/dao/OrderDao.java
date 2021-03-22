@@ -19,4 +19,7 @@ public interface OrderDao extends JpaRepository<OrderEntity,Integer> {
 
     @Query("select k from OrderEntity k where k.or_transaction_id.id = ?1")
     List<OrderEntity> getOrderByTransactionID(Integer tr_id);
+
+    @Query("select o from OrderEntity o where o.or_product_id.id = ?1 and o.or_user_id.id = ?2 and o.or_transaction_id.payment_status = 1 and o.or_transaction_id.tr_status = 3")
+    List<OrderEntity> getListOrderEntity(Integer pro_id,Integer user_id);
 }
