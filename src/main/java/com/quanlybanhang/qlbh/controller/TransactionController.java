@@ -9,6 +9,7 @@ import com.quanlybanhang.qlbh.dto.OrderDTO;
 import com.quanlybanhang.qlbh.dao.RevenueDao;
 import com.quanlybanhang.qlbh.dto.RevenueDTO;
 import com.quanlybanhang.qlbh.dto.TransactionDTO;
+import com.quanlybanhang.qlbh.entity.OrderEntity;
 import com.quanlybanhang.qlbh.entity.ProductEntity;
 import com.quanlybanhang.qlbh.service.CardService;
 import com.quanlybanhang.qlbh.service.OrderService;
@@ -82,6 +83,12 @@ public class TransactionController {
 
     @DeleteMapping("transaction/{tr_id}")
     public Boolean deleteAllByTransaction(@PathVariable Integer tr_id){
+        List<OrderEntity> orderEntities = orderDao.getOrderByTransactionID(tr_id);
+        for(OrderEntity or_entity : orderEntities){
+            ProductEntity productEntity = or_entity.getOr_product_id();
+            productEntity.setPro_number(productEntity.getPro_number() + or_entity.getOr_qty());
+            productDao.save(productEntity);
+        }
         orderDao.deleteAllByTransaction(tr_id);
         transactionDao.deleteById(tr_id);
         return true;

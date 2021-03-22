@@ -18,16 +18,16 @@ import java.util.List;
 public class ProductDTO {
     private Integer id;
 
-    @NotBlank(message = "Tên Sản Phẩm Không Được Để Trống")
+    @NotBlank(message = "Tên Sản Phẩm Không Được Để Trống ! \n" + " ")
     private String pr_name ;
     private String pro_slug;
-    @NotNull(message = "Giá Sản Phẩm Không Được Bỏ Trống")
+    @NotNull(message = "Giá Sản Phẩm Không Được Bỏ Trống ! \n")
     private Integer pro_price;
     private Integer pro_sale ;
     private Integer pro_active;
     private Integer pro_hot ;
     private Integer pro_pay ;
-    @NotNull(message = "Số Lượng Không Được Bỏ Trống")
+    @NotNull(message = "Số Lượng Không Được Bỏ Trống ! \n")
     private Integer pro_number ;
     private String pro_description ;
     private String pro_avatar ;
