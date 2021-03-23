@@ -1,6 +1,7 @@
 package com.quanlybanhang.qlbh.controller;
 
 import com.quanlybanhang.qlbh.dao.OrderDao;
+import com.quanlybanhang.qlbh.dao.ViewDao;
 import com.quanlybanhang.qlbh.dto.ViewDTO;
 import com.quanlybanhang.qlbh.entity.OrderEntity;
 import com.quanlybanhang.qlbh.service.ViewService;
@@ -17,6 +18,9 @@ import java.util.List;
 public class ViewController {
     @Autowired
     private ViewService viewService;
+
+    @Autowired
+    private ViewDao viewDao;
 
     @Autowired
     private OrderDao orderDao;
@@ -45,6 +49,11 @@ public class ViewController {
     @GetMapping("get-view/{pro_id}/{user_id}")
     public ResponseEntity<?> GetView(@PathVariable Integer pro_id,@PathVariable Integer user_id){
         return new ResponseEntity<>(viewService.GetView(pro_id,user_id),HttpStatus.OK);
+    }
+
+    @GetMapping("update-prouduct-rating")
+    public void UpdateProductRating(){
+        viewDao.UpdateProductWithRate();
     }
 
 }

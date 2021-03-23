@@ -1,6 +1,5 @@
 package com.quanlybanhang.qlbh.dto;
 
-import com.quanlybanhang.qlbh.entity.ImageEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,7 +8,6 @@ import lombok.Setter;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
-import java.util.List;
 
 @Getter
 @Setter
@@ -36,6 +34,7 @@ public class ProductDTO {
     private Timestamp updated_at ;
     private Integer pro_view;
     private String pro_place_sale;
+    private Integer pro_rate_number;
 
     private CategoryDTO pro_category_id;
     private AdminDTO pro_author_id;
