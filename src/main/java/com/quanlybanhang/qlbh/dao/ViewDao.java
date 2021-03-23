@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Repository
 public interface ViewDao extends JpaRepository<ViewEntity,Integer> {
 
@@ -22,4 +24,7 @@ public interface ViewDao extends JpaRepository<ViewEntity,Integer> {
             "group by v.pro_id) as rate on p.id = rate.pro_id\n" +
             "set p.pro_rate_number = rate.ratingnumber",nativeQuery=true)
     void UpdateProductWithRate();
+
+    @Query("select v from ViewEntity v where v.pro_id.pro_category_id.c_group_id.id = ?1")
+    List<ViewEntity> GetListView(Integer group_id);
 }

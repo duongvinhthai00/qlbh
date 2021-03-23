@@ -2,6 +2,7 @@ package com.quanlybanhang.qlbh.controller;
 
 import com.quanlybanhang.qlbh.dao.OrderDao;
 import com.quanlybanhang.qlbh.dao.ViewDao;
+import com.quanlybanhang.qlbh.dto.ProductDTO;
 import com.quanlybanhang.qlbh.dto.ViewDTO;
 import com.quanlybanhang.qlbh.entity.OrderEntity;
 import com.quanlybanhang.qlbh.service.ViewService;
@@ -54,6 +55,12 @@ public class ViewController {
     @GetMapping("update-prouduct-rating")
     public void UpdateProductRating(){
         viewDao.UpdateProductWithRate();
+    }
+
+    @GetMapping("get-product-user/{user_id}/{pro_id}/{group_id}")
+    public ResponseEntity<?> GetListProductByUser(@PathVariable Integer user_id,@PathVariable Integer pro_id,@PathVariable Integer group_id){
+        List<ProductDTO> list = viewService.GetListProductForUser(user_id,pro_id,group_id);
+        return new ResponseEntity<>(list,HttpStatus.OK);
     }
 
 }
