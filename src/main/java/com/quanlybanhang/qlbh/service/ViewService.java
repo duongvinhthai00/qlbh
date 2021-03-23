@@ -4,4 +4,5 @@ import com.quanlybanhang.qlbh.dto.ViewDTO;
 
 public interface ViewService {
     ViewDTO SaveView(ViewDTO viewDTO);
+    ViewDTO SaveRating(ViewDTO viewDTO);
 }

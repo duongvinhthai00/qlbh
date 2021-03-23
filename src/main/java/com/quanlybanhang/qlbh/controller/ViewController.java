@@ -36,5 +36,11 @@ public class ViewController {
         return true;
     }
 
+    @PostMapping("save-rating")
+    public ResponseEntity<ViewDTO> SaveRating(@RequestBody ViewDTO viewDTO){
+        viewDTO = viewService.SaveRating(viewDTO);
+        return new ResponseEntity<>(viewDTO, HttpStatus.CREATED);
+    }
+
 
 }

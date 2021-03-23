@@ -31,4 +31,20 @@ public class ViewServiceImpl implements ViewService {
         viewDTO = ViewMapper.entity2DTO(viewDao.save(viewEntity));
         return viewDTO;
     }
+
+    public ViewDTO SaveRating(ViewDTO viewDTO) {
+        List<ViewEntity> list = viewDao.findAll();
+        for(ViewEntity entity : list){
+            if(viewDTO.getPro_id().getId() == entity.getPro_id().getId() && viewDTO.getUser_id().getId() == entity.getUser_id().getId()){
+                ViewEntity viewEntity = entity;
+                viewEntity.setRating_number(viewDTO.getRating_number());
+                viewDTO = ViewMapper.entity2DTO(viewDao.save(viewEntity));
+                return viewDTO;
+            }
+        }
+        viewDTO.setView_number(1);
+        ViewEntity viewEntity = ViewMapper.dto2Entity(viewDTO);
+        viewDTO = ViewMapper.entity2DTO(viewDao.save(viewEntity));
+        return viewDTO;
+    }
 }
