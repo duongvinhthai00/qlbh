@@ -37,9 +37,5 @@ public class CategoryEntity {
     @JoinColumn(name = "c_group_id")
     private CategoryGroupEntity c_group_id;
 
-    @OneToMany(mappedBy = "pro_category_id",fetch = FetchType.LAZY)
-    private List<ProductEntity> listProducts;
 
-    @OneToMany(mappedBy = "a_category_id",fetch = FetchType.LAZY)
-    private List<ArticleEntity> listArticles;
 }

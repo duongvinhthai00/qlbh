@@ -21,6 +21,4 @@ public class TransportEntity {
     private String name;
     private String time;
     private Integer fee;
-    @OneToMany(mappedBy = "tr_transport_id",fetch = FetchType.LAZY)
-    private List<TransactionEntity> transactionEntityList;
 }

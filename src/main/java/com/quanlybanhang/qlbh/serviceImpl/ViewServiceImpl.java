@@ -47,4 +47,11 @@ public class ViewServiceImpl implements ViewService {
         viewDTO = ViewMapper.entity2DTO(viewDao.save(viewEntity));
         return viewDTO;
     }
+
+    @Override
+    public ViewDTO GetView(Integer pro_id,Integer user_id) {
+        ViewEntity viewEntity = viewDao.GetView(pro_id,user_id);
+        ViewDTO viewDTO = ViewMapper.entity2DTO(viewEntity);
+        return viewDTO;
+    }
 }

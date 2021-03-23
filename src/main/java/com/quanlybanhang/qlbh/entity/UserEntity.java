@@ -33,15 +33,4 @@ public class UserEntity {
 	private Timestamp update_at;
 	private String user_name;
 
-	@OneToMany(mappedBy = "tr_user_id",fetch = FetchType.LAZY)
-	private List<TransactionEntity> listTransactions;
-
-	@OneToMany(mappedBy = "or_user_id",fetch = FetchType.LAZY)
-	private List<OrderEntity> listOrders;
-
-	@OneToMany(mappedBy = "c_user_id",fetch = FetchType.LAZY)
-	private List<CardEntity> listCards;
-
-	@OneToMany(mappedBy = "user_id",fetch = FetchType.LAZY)
-	private List<ViewEntity> viewEntityList;
 }

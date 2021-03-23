@@ -22,7 +22,7 @@ public class ViewController {
     private OrderDao orderDao;
 
     @PostMapping("save-view")
-    public ResponseEntity<ViewDTO> SaveView(@RequestBody ViewDTO viewDTO){
+    public ResponseEntity<?> SaveView(@RequestBody ViewDTO viewDTO){
         viewDTO = viewService.SaveView(viewDTO);
         return new ResponseEntity<>(viewDTO, HttpStatus.CREATED);
     }
@@ -37,10 +37,14 @@ public class ViewController {
     }
 
     @PostMapping("save-rating")
-    public ResponseEntity<ViewDTO> SaveRating(@RequestBody ViewDTO viewDTO){
+    public ResponseEntity<?> SaveRating(@RequestBody ViewDTO viewDTO){
         viewDTO = viewService.SaveRating(viewDTO);
         return new ResponseEntity<>(viewDTO, HttpStatus.CREATED);
     }
 
+    @GetMapping("get-view/{pro_id}/{user_id}")
+    public ResponseEntity<?> GetView(@PathVariable Integer pro_id,@PathVariable Integer user_id){
+        return new ResponseEntity<>(viewService.GetView(pro_id,user_id),HttpStatus.OK);
+    }
 
 }

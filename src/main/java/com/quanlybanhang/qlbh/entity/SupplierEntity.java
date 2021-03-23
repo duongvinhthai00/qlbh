@@ -32,6 +32,4 @@ public class SupplierEntity {
     @JoinColumn(name = "s_author_id")
     private AdminEntity s_author_id;
 
-    @OneToMany(mappedBy = "s_suppliers_id",fetch = FetchType.LAZY)
-    private List<ProductEntity> listProducts;
 }

@@ -21,6 +21,4 @@ public class CategoryGroupEntity {
     private Integer id;
     private String name;
 
-    @OneToMany(mappedBy = "c_group_id",fetch = FetchType.LAZY)
-    private List<CategoryEntity> listCategories;
 }

@@ -49,15 +49,4 @@ public class ProductEntity {
     @JoinColumn(name = "s_suppliers_id")
     private SupplierEntity s_suppliers_id;
 
-    @OneToMany(mappedBy = "or_product_id",fetch = FetchType.LAZY)
-    private List<OrderEntity> listOrders;
-
-    @OneToMany(mappedBy = "im_product_id",fetch = FetchType.LAZY)
-    private List<ImageEntity> listImages;
-
-    @OneToMany(mappedBy = "c_product_id",fetch = FetchType.LAZY)
-    private List<CardEntity> listCards;
-
-    @OneToMany(mappedBy = "pro_id",fetch = FetchType.LAZY)
-    private List<ViewEntity> viewEntityList;
 }

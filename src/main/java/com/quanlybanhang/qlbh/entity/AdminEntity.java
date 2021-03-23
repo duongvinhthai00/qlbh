@@ -30,15 +30,4 @@ public class AdminEntity {
     private Timestamp update_at ;
     private String user_name ;
 
-    @OneToMany(mappedBy = "s_author_id",fetch = FetchType.LAZY)
-    private List<SupplierEntity> listSuppliers;
-
-    @OneToMany(mappedBy = "c_author_id",fetch = FetchType.LAZY)
-    private List<CategoryEntity> listCategories;
-
-    @OneToMany(mappedBy = "pro_author_id",fetch = FetchType.LAZY)
-    private List<ProductEntity> listProducts;
-
-    @OneToMany(mappedBy = "a_author_id",fetch = FetchType.LAZY)
-    private List<ArticleEntity> listArticles;
 }

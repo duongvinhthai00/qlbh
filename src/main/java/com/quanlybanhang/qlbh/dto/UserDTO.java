@@ -33,7 +33,6 @@ public class UserDTO {
 	private Timestamp update_at;
 	@NotBlank(message = "user_name Không Được Để Trống")
 	private String user_name;
-	private MultipartFile fileupload;
 
 
 	

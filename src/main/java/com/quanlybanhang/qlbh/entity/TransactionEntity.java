@@ -38,6 +38,4 @@ public class TransactionEntity {
     @JoinColumn(name = "tr_transport_id")
     private TransportEntity tr_transport_id;
 
-    @OneToMany(mappedBy = "or_transaction_id",fetch = FetchType.LAZY)
-    private List<OrderEntity> listOrders;
 }
