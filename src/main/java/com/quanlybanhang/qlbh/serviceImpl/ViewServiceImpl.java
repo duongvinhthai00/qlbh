@@ -118,6 +118,7 @@ public class ViewServiceImpl implements ViewService {
             ItemBasedRecommender recommender = new GenericItemBasedRecommender(model, itemSimilarity);
             List<RecommendedItem> recommendations = recommender.mostSimilarItems(pro_id,20);
             for (RecommendedItem recommendation : recommendations){
+                  System.out.println("work");
                   System.out.println(recommendation);
                   int ProductId = (int) recommendation.getItemID();
                   productEntityList.add(productDao.findById(ProductId).get());
