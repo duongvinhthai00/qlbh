@@ -25,6 +25,6 @@ public interface ViewDao extends JpaRepository<ViewEntity,Integer> {
             "set p.pro_rate_number = rate.ratingnumber",nativeQuery=true)
     void UpdateProductWithRate();
 
-    @Query("select v from ViewEntity v where v.pro_id.pro_category_id.c_group_id.id = ?1")
+    @Query("select v from ViewEntity v where v.pro_id.pro_category_id.c_group_id.id = ?1 order by v.user_id.id asc ")
     List<ViewEntity> GetListView(Integer group_id);
 }
