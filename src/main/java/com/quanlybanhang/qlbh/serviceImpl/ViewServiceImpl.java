@@ -116,7 +116,7 @@ public class ViewServiceImpl implements ViewService {
             DataModel model = new FileDataModel(new File(input));
             ItemSimilarity itemSimilarity = new LogLikelihoodSimilarity(model);
             ItemBasedRecommender recommender = new GenericItemBasedRecommender(model, itemSimilarity);
-            List<RecommendedItem> recommendations = recommender.mostSimilarItems(pro_id,20);
+            List<RecommendedItem> recommendations = recommender.mostSimilarItems(pro_id,15);
             for (RecommendedItem recommendation : recommendations){
                   System.out.println("work");
                   System.out.println(recommendation);
