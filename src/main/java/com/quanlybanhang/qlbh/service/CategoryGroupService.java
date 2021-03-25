@@ -10,4 +10,5 @@ public interface CategoryGroupService {
     CategoryGroupDTO findCategoryGroupById(Integer id);
     CategoryGroupDTO addCategoryGroup(CategoryGroupDTO categoryGroupDTO);
     void updateCategoryGroup(CategoryGroupDTO categoryGroupDTO);
+    Boolean deleteCateGroup(Integer id);
 }

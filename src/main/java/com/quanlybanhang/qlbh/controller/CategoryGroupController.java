@@ -53,4 +53,10 @@ public class CategoryGroupController {
         categoryGroupService.updateCategoryGroup(categoryGroupDTO);
         return new ResponseEntity<CategoryGroupDTO>(categoryGroupDTO,HttpStatus.OK);
     }
+
+    @DeleteMapping("categorygroup/{id}")
+    public Boolean deleteCateGroup(@PathVariable Integer id){
+        categoryGroupService.deleteCateGroup(id);
+        return true;
+    }
 }

@@ -71,4 +71,10 @@ public class CategoryGroupImpl implements CategoryGroupService {
 
     }
 
+    @Override
+    public Boolean deleteCateGroup(Integer id) {
+        categoryGroupDao.deleteById(id);
+        return true;
+    }
+
 }
