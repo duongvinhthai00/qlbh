@@ -59,4 +59,10 @@ public class CategoryController {
         List<CategoryDTO> categoryDTOList = categoryService.findAllByCategoryGroup(id,idCr);
         return new ResponseEntity<List<CategoryDTO>>(categoryDTOList,HttpStatus.OK);
     }
+
+    @DeleteMapping("category/{id}")
+    public Boolean deleteCategoryById(@PathVariable Integer id){
+        categoryService.deleteCategoryById(id);
+        return true;
+    }
 }

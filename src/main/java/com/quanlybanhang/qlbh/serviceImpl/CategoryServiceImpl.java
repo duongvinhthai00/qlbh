@@ -84,4 +84,10 @@ public class CategoryServiceImpl implements CategoryService {
         return categoryDTOList;
     }
 
+    @Override
+    public Boolean deleteCategoryById(Integer id) {
+        categoryDao.deleteById(id);
+        return true;
+    }
+
 }

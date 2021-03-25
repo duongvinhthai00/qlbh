@@ -10,4 +10,5 @@ public interface CategoryService {
     CategoryDTO addCategory(CategoryDTO categoryDTO);
     void updateCategory(CategoryDTO categoryDTO);
     List<CategoryDTO> findAllByCategoryGroup(Integer id,Integer idCr);
+    Boolean deleteCategoryById(Integer id);
 }
