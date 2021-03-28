@@ -21,4 +21,7 @@ public class CategoryGroupEntity {
     private Integer id;
     private String name;
 
+    @ManyToOne
+    @JoinColumn(name = "group_author_id")
+    private AdminEntity group_author_id;
 }

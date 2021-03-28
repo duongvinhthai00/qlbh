@@ -22,4 +22,8 @@ public class PaymentInfoEntity {
     private String account_number;
     private String account_seri;
     private String bank_name;
+
+    @ManyToOne
+    @JoinColumn(name = "pay_author_id")
+    private AdminEntity pay_author_id;
 }

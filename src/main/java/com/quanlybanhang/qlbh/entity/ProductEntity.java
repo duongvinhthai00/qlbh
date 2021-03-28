@@ -45,8 +45,5 @@ public class ProductEntity {
     @JoinColumn(name = "pro_author_id")
     private AdminEntity pro_author_id;
 
-    @ManyToOne
-    @JoinColumn(name = "s_suppliers_id")
-    private SupplierEntity s_suppliers_id;
 
 }

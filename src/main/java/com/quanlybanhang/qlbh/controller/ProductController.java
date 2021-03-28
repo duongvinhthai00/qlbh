@@ -70,7 +70,6 @@ public class ProductController {
         if(result.hasErrors()){
             return mapValidationService.getMapValidationError(result);
         }
-        productDTO.setPro_rate_number(0);
         productDTO.setPro_pay(productDTO.getPro_price() - (productDTO.getPro_price()*productDTO.getPro_sale()/100));
         productDTO = productService.addProduct(productDTO);
         return new ResponseEntity<ProductDTO>(productDTO, HttpStatus.CREATED);

@@ -93,7 +93,7 @@ public class ViewServiceImpl implements ViewService {
 
 
     @Override
-    public List<ProductDTO> GetListProductForUser(Integer user_id, Integer pro_id, Integer group_id) {
+    public List<ProductDTO> GetListProductForUser(Integer pro_id, Integer group_id) {
         String input = "D://fileluu.csv";
         File file = new File(input);
         if(!file.exists()){

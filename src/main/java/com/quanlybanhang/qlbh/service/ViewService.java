@@ -9,5 +9,5 @@ public interface ViewService {
     ViewDTO SaveView(ViewDTO viewDTO);
     ViewDTO SaveRating(ViewDTO viewDTO);
     ViewDTO GetView(Integer pro_id,Integer user_id);
-    List<ProductDTO> GetListProductForUser(Integer user_id, Integer pro_id, Integer group_id);
+    List<ProductDTO> GetListProductForUser(Integer pro_id, Integer group_id);
 }

@@ -1,5 +1,6 @@
 package com.quanlybanhang.qlbh.dto;
 
+import com.quanlybanhang.qlbh.entity.AdminEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,4 +23,5 @@ public class PaymentInfoDTO {
     private String account_seri;
     @NotBlank(message = "Tên Ngân Hàng Không Được Bỏ Trống")
     private String bank_name;
+    private AdminEntity pay_author_id;
 }

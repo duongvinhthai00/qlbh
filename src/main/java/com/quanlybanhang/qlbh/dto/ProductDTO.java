@@ -38,6 +38,5 @@ public class ProductDTO {
 
     private CategoryDTO pro_category_id;
     private AdminDTO pro_author_id;
-    private SupplierDTO s_suppliers_id;
 
 }

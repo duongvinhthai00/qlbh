@@ -57,9 +57,9 @@ public class ViewController {
         viewDao.UpdateProductWithRate();
     }
 
-    @GetMapping("get-product-user/{user_id}/{pro_id}/{group_id}")
-    public ResponseEntity<?> GetListProductByUser(@PathVariable Integer user_id,@PathVariable Integer pro_id,@PathVariable Integer group_id){
-        List<ProductDTO> list = viewService.GetListProductForUser(user_id,pro_id,group_id);
+    @GetMapping("get-product-user/{pro_id}/{group_id}")
+    public ResponseEntity<?> GetListProductByUser(@PathVariable Integer pro_id,@PathVariable Integer group_id){
+        List<ProductDTO> list = viewService.GetListProductForUser(pro_id,group_id);
         return new ResponseEntity<>(list,HttpStatus.OK);
     }
 
