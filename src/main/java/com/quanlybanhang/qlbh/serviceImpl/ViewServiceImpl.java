@@ -34,6 +34,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -131,6 +133,20 @@ public class ViewServiceImpl implements ViewService {
                 productDTOList.add(ProductMapper.entity2DTO(entity));
             }
         }
+        Comparator<ProductDTO> comp = new Comparator<ProductDTO>() {
+            @Override
+            public int compare(ProductDTO o1, ProductDTO o2) {
+                if(o1.getPro_rate_number() > o2.getPro_rate_number()){
+                    return -1;
+                }else{
+                    if(o1.getPro_rate_number()<o2.getPro_rate_number()){
+                        return 1;
+                    }
+                }
+                return 0;
+            }
+        };
+        Collections.sort(productDTOList,comp);
         return productDTOList;
     }
 }
