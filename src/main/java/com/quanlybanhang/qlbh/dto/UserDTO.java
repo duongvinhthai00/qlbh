@@ -15,18 +15,18 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 public class UserDTO {
 	private Integer id;
-	@NotBlank(message = "phone Không Được Để Trống")
+	@NotBlank(message = "Số Điện Thoại Không Được Để Trống")
 	private String phone;
 	private String avatar;
 	private String active;
 	@NotBlank(message = "password Không Được Để Trống")
 	private String password;
-	@NotBlank(message = "name Không Được Để Trống")
+	@NotBlank(message = "Tên Không Được Để Trống")
 	private String name;
 	@NotBlank(message = "email Không Được Để Trống")
 	private String email;
 	private Integer total_pay;
-	@NotBlank(message = "address Không Được Để Trống")
+	@NotBlank(message = "Địa Chỉ Không Được Để Trống")
 	private String address;
 	private String about;
 	private Timestamp created_at;

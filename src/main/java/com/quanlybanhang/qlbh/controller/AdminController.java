@@ -2,13 +2,17 @@ package com.quanlybanhang.qlbh.controller;
 
 import com.quanlybanhang.qlbh.dto.AdminDTO;
 import com.quanlybanhang.qlbh.dto.LoginDTO;
+import com.quanlybanhang.qlbh.dto.UserDTO;
 import com.quanlybanhang.qlbh.service.AdminService;
 import com.quanlybanhang.qlbh.serviceImpl.MapValidationService;
+import com.quanlybanhang.qlbh.serviceImpl.UploadFileService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -17,6 +21,9 @@ import java.util.List;
 @RequestMapping("api/v2")
 @CrossOrigin(origins = "http://localhost:4200")
 public class AdminController {
+    @Value("${upload.path}")
+    private String fileUpload;
+
     @Autowired
     private AdminService adminService;
 
@@ -65,5 +72,14 @@ public class AdminController {
             return mapValidationService.getMapValidationError(result);
         }
         return new ResponseEntity<AdminDTO>(adminService.CheckAdminLogin(loginDTO),HttpStatus.OK);
+    }
+
+    @PostMapping("admins/upload/{id}")
+    public Boolean AdminUploadFile(@PathVariable Integer id,@RequestParam("file") MultipartFile file){
+        AdminDTO adminDTO = adminService.findAdminById(id);
+        String fileName = UploadFileService.UploadOneFile(file,fileUpload);
+        adminDTO.setAvatar(fileName);
+        adminService.updateAdmin(adminDTO);
+        return true;
     }
 }

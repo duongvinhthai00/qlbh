@@ -14,8 +14,11 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 public class AdminDTO {
     private Integer id;
+    @NotBlank(message = "name Không Được Để Trống")
     private String name ;
+    @NotBlank(message = "email Không Được Để Trống")
     private String email ;
+    @NotBlank(message = "phone Không Được Để Trống")
     private String phone ;
     private String avatar ;
     private Integer active;
@@ -23,4 +26,6 @@ public class AdminDTO {
     private Timestamp created_at ;
     private Timestamp update_at ;
     private String user_name ;
+    @NotBlank(message = "address Không Được Để Trống")
+    private String address;
 }

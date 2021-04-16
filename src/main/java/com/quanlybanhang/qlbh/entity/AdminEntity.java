@@ -29,5 +29,6 @@ public class AdminEntity {
     private Timestamp created_at ;
     private Timestamp update_at ;
     private String user_name ;
+    private String address;
 
 }
